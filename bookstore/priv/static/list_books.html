@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookstore</title>
+</head>
+<body>
+  <h1>Books</h1>
+  <ul id="bookList"></ul>
+
+  <script>
+    function fetchBooks() {
+      fetch("/api/books")
+        .then(response => response.json())
+        .then(data => {
+          const bookList = document.getElementById("bookList");
+          bookList.innerHTML = "";
+          data.data.forEach(book => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${book.title} by ${book.author}`;
+
+            // Add a delete button with book ID as data attribute
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.dataset.bookId = book.id; // Store book ID in data attribute
+            deleteButton.addEventListener("click", () => deleteBook(book.id));
+
+            listItem.appendChild(deleteButton);
+            bookList.appendChild(listItem);
+          });
+        })
+        .catch(error => console.error("Error:", error));
+    }
+
+    function deleteBook(id) {
+      // Confirmation before deletion
+      if (confirm("Are you sure you want to delete this book?")) {
+        fetch(`/api/books/${id}`, {
+          method: "DELETE"
+        })
+        .then(response => {
+          if (response.ok) {
+            fetchBooks();
+          } else {
+            console.error("Failed to delete book");
+          }
+        })
+        .catch(error => console.error("Error:", error));
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      fetchBooks();
+    });
+  </script>
+</body>
+</html>

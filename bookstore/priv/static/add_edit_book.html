@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookstore</title>
+</head>
+<body>
+  <h1>Add/Edit Book</h1>
+  <form id="bookForm">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title"><br>
+    <label for="author">Author:</label><br>
+    <input type="text" id="author" name="author"><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById("bookForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      
+      const formData = new FormData(event.target);
+      const bookData = {
+        title: formData.get("title"),
+        author: formData.get("author")
+      };
+
+      let url = "/api/books";
+      let method = "POST";
+      
+      if (formData.has("id")) {
+        url += "/" + formData.get("id");
+        method = "PUT";
+      }
+      
+      fetch(url, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ book: bookData })
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error("Error:", error));
+    });
+  </script>
+</body>
+</html>
