@@ -1,4 +1,4 @@
-# ToDO App
+# ToDo App
 
 Elixir app that simulates a basic todo list management system. This app allows users to add, remove, and list todos.
 
