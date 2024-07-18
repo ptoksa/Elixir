@@ -1,11 +1,27 @@
-# Hello
+# Phoenix Project Setup
 
-To start your Phoenix server:
+Welcome to your new Phoenix project! Follow the steps below to get your Phoenix server up and running.
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+## Getting Started
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+#### Install and set up dependencies
+```sh
+mix setup
+```
+#### Start the Phoenix server
+- Run
+```sh
+mix phx.server
+```
+- Or start it inside IEx with
+```sh
+iex -S mix phx.server
+```
+#### Access the application
+
+- Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+
+## Deployment
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
