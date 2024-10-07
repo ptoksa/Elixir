@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :jokes, Jokes.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "qwerty",
   hostname: "localhost",
   database: "jokes_dev",
   stacktrace: true,

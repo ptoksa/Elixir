@@ -35,3 +35,18 @@ my_backend-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Ignore secret config file to avoid pushing sensitive information.
+/config/prod.secret.exs
+
+# Ignore log files.
+/log/
+
+# Operating system specific files.
+.DS_Store
+
+# Editor specific files.
+*.swp
+.vscode/
+
+# Ignore database files (if using SQLite or similar).
+*.db

@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :bookstore, Bookstore.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "qwerty",
   hostname: "localhost",
   database: "bookstore_dev",
   stacktrace: true,

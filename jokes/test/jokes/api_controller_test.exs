@@ -2,10 +2,9 @@ defmodule Jokes.ApiControllerTest do
   use Jokes.DataCase
 
   alias Jokes.ApiController
+  alias Jokes.Joke
 
   describe "jokes" do
-    alias Jokes.ApiController.Joke
-
     import Jokes.ApiControllerFixtures
 
     @invalid_attrs %{response: nil}

@@ -1,6 +1,7 @@
 defmodule JokesWeb.Router do
   use JokesWeb, :router
 
+  # Define pipelines for browser and API
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -14,26 +15,30 @@ defmodule JokesWeb.Router do
     plug :accepts, ["json"]
   end
 
+  # Scope for web routes
   scope "/", JokesWeb do
     pipe_through :browser
 
     live "/", JokeLive
 
+    # Ensure the JokeController is correctly defined
     get "/joke", JokeController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", JokesWeb do
-  #   pipe_through :api
-  # end
+  # API scope for jokes
+  scope "/api", JokesWeb do
+    pipe_through :api
+
+    # Ensure ApiController actions are implemented correctly
+    get "/jokes", ApiController, :list_jokes
+    get "/jokes/:id", ApiController, :get_joke!
+    post "/jokes", ApiController, :create_joke
+    put "/jokes/:id", ApiController, :update_joke
+    delete "/jokes/:id", ApiController, :delete_joke
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:jokes, :dev_routes) do
-    # If you want to use the LiveDashboard in production, you should put
-    # it behind authentication and allow only admins to access it.
-    # If your application does not have an admins-only section yet,
-    # you can use Plug.BasicAuth to set up some basic authentication
-    # as long as you are also using SSL (which you should anyway).
     import Phoenix.LiveDashboard.Router
 
     scope "/dev" do
