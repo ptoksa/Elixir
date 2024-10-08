@@ -19,7 +19,7 @@ iex -S mix phx.server
 ```
 #### Access the application
 
-- Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+- Now you can visit [`localhost:4000`](http://localhost:4000/hello) from your browser.
 
 ## Deployment
 
